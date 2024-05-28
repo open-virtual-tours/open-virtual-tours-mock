@@ -4,15 +4,15 @@ on:
     
 jobs:
   deploy:
-    name: Deploy to DigitalOcean Droplet
+    name: Deploy to Ec2 instance
     runs-on: self-hosted
     steps:
       - name: Get permissions
         run: |
-          chown -R $USER:$USER /ovt-actions-runner/_work/open-virtual-tours
+          sudo chown -R $USER:$USER /ovt-actions-runner/_work/open-virtual-tours
       - name: Download files from the current repository
         uses: actions/checkout@v2
-      - name: To Droplet 
+      - name: TO EC2 instance
         run: |
-          docker compose down
-          docker compose up -d --build
+          sudo docker compose down
+          sudo docker compose up -d --build
